@@ -1,0 +1,633 @@
+{
+    "package": "RiteKit",
+    "tagline": "RiteKit API",
+    "description": "RiteKit team continues to add facets to the social media toolkit that is already the world\u2019s most automated, user-friendly and the most integrated into your existing work-flow. RiteKit aim has never wavered: the maximum views, engagement and link click-throughs on everything you share socially.",
+    "image": "https:\/\/logo.clearbit.com\/\/ritekit.com",
+    "repo": "https:\/\/github.com\/RapidSoftwareSolutions\/Marketplace-RiteKit-Package",
+    "keywords": [
+        "API",
+        "Hashtag",
+        "Social",
+        "Media"
+    ],
+    "accounts": {
+        "domain": "ritekit.com",
+        "credentials": [
+            "clientId"
+        ]
+    },
+    "steps": [
+        "Sign up for RiteKit https:\/\/ritekit.com",
+        "Go to developer dashboard https:\/\/ritekit.com\/developer\/dashboard\/",
+        "Click `Create a token` button to get your Client ID"
+    ],
+    "blocks": [
+        {
+            "name": "getAutoHashtaggedText",
+            "description": "Returns auto-hashtagged text of the post.",
+            "args": [
+                {
+                    "name": "clientId",
+                    "type": "credentials",
+                    "info": "Client id from your developer dashboard.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "client_id"
+                    }
+                },
+                {
+                    "name": "text",
+                    "type": "String",
+                    "info": "Text of the post.Example: `Is artificial intelligence the future of customer service?`.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "post"
+                    }
+                }
+            ],
+            "vendorRequest": {
+                "url": "https:\/\/api.ritekit.com\/v1\/stats\/auto-hashtag",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "post",
+                            "client_id"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getListOfHashtagSuggestions",
+            "description": "Returns list of hashtag suggestions and their real-time stats for a given topic.",
+            "args": [
+                {
+                    "name": "clientId",
+                    "type": "credentials",
+                    "info": "Client id from your developer dashboard.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "client_id"
+                    }
+                },
+                {
+                    "name": "topicText",
+                    "type": "String",
+                    "info": "Topic text. Example: `seo`.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "topic"
+                    }
+                }
+            ],
+            "vendorRequest": {
+                "url": "https:\/\/api.ritekit.com\/v1\/stats\/hashtag-suggestions\/{$data['topic']}",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "client_id"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getHashtagHistory",
+            "description": "Returns historical stats for a given hashtag from the last 30 days.",
+            "args": [
+                {
+                    "name": "clientId",
+                    "type": "credentials",
+                    "info": "Client id from your developer dashboard.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "client_id"
+                    }
+                },
+                {
+                    "name": "hashtag",
+                    "type": "String",
+                    "info": "Hashtag without # mark. Example: `job`.",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "url": "https:\/\/api.ritekit.com\/v1\/stats\/history\/{$data['hashtag']}",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "client_id"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getTrendingHashtags",
+            "description": "Returns list of hashtags currently trending on Twitter.",
+            "args": [
+                {
+                    "name": "clientId",
+                    "type": "credentials",
+                    "info": "Client id from your developer dashboard.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "client_id"
+                    }
+                },
+                {
+                    "name": "onlyGreenHashtags",
+                    "type": "Select",
+                    "options": [
+                        "true",
+                        "false"
+                    ],
+                    "info": "Restrict results only to green hashtags. Hides overused (red) hashtags. Default: true.",
+                    "required": false,
+                    "vendorSchema": {
+                        "name": "green"
+                    }
+                },
+                {
+                    "name": "onlyLatinCharacters",
+                    "type": "Select",
+                    "options": [
+                        "true",
+                        "false"
+                    ],
+                    "info": "Restrict results only to hashtags with latin characters. Default: true.",
+                    "required": false,
+                    "vendorSchema": {
+                        "name": "latin"
+                    }
+                }
+            ],
+            "vendorRequest": {
+                "url": "https:\/\/api.ritekit.com\/v1\/search\/trending",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "client_id",
+                            "latin",
+                            "green"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getEmojiSuggestionsForText",
+            "description": "Returns list of emoji suggestions for a given text of the post.",
+            "args": [
+                {
+                    "name": "clientId",
+                    "type": "credentials",
+                    "info": "Client id from your developer dashboard.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "client_id"
+                    }
+                },
+                {
+                    "name": "text",
+                    "type": "String",
+                    "info": "Text of the post. Example:` Why robots may soon steal all manufacturing jobs \u2013 but it\u2019s not all bad news`.",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "url": "https:\/\/api.ritekit.com\/v1\/emoji\/suggestions",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "client_id",
+                            "text"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getTextWithEmojiAdded",
+            "description": "Returns text of the post with emoji added.",
+            "args": [
+                {
+                    "name": "clientId",
+                    "type": "credentials",
+                    "info": "Client id from your developer dashboard.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "client_id"
+                    }
+                },
+                {
+                    "name": "text",
+                    "type": "String",
+                    "info": "Text of the post. Example:` Why robots may soon steal all manufacturing jobs \u2013 but it\u2019s not all bad news`.",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "url": "https:\/\/api.ritekit.com\/v1\/emoji\/auto-emojify",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "client_id",
+                            "text"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getInfluencersForHashtag",
+            "description": "Returns list of Twitter influencers for a given hashtag.",
+            "args": [
+                {
+                    "name": "clientId",
+                    "type": "credentials",
+                    "info": "Client id from your developer dashboard.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "client_id"
+                    }
+                },
+                {
+                    "name": "hashtag",
+                    "type": "String",
+                    "info": "Hashtag without # mark. Example: `SocialMedia`.",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "url": "https:\/\/api.ritekit.com\/v1\/emoji\/auto-emojify\/{$data['hashtag']}",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "client_id",
+                            "text"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "createImageFromText",
+            "description": "Returns URL of an image created from text according to given style parameters.",
+            "args": [
+                {
+                    "name": "clientId",
+                    "type": "credentials",
+                    "info": "Client id from your developer dashboard.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "client_id"
+                    }
+                },
+                {
+                    "name": "quote",
+                    "type": "String",
+                    "info": "Text of the quote. Example: `If you love life, don't waste time, for time is what life is made up of`.",
+                    "required": true
+                },
+                {
+                    "name": "author",
+                    "type": "String",
+                    "info": "Name of the author\/source Example: Bruce Lee.",
+                    "required": false
+                },
+                {
+                    "name": "fontSize",
+                    "type": "Number",
+                    "info": "Font size for the quote (author font size is calculated automatically) Example: 60.",
+                    "required": false
+                },
+                {
+                    "name": "quoteFont",
+                    "type": "String",
+                    "info": "Font-family used for quote text Example: Lora.",
+                    "required": false
+                },
+                {
+                    "name": "quoteFontColor",
+                    "type": "String",
+                    "info": "Font color of the quote text Example: #4f4f4f.",
+                    "required": false
+                },
+                {
+                    "name": "authorFont",
+                    "type": "String",
+                    "info": "Font-family used for author name Example: Lato Black.",
+                    "required": false
+                },
+                {
+                    "name": "authorFontColor",
+                    "type": "String",
+                    "info": "Font color of the author Example: #e5e5e5.",
+                    "required": false
+                },
+                {
+                    "name": "enableHighlight",
+                    "type": "String",
+                    "info": "Enable highlight on quote text Example: 1.",
+                    "required": false
+                },
+                {
+                    "name": "highlightColor",
+                    "type": "String",
+                    "info": "Color used for highlight Example: #f0ea66.",
+                    "required": false
+                },
+                {
+                    "name": "bgType",
+                    "type": "String",
+                    "info": "Background type (gradient\/solid) Example: gradient.",
+                    "required": false
+                },
+                {
+                    "name": "backgroundColor",
+                    "type": "String",
+                    "info": "Background color for solid background type Example: #000000.",
+                    "required": false
+                },
+                {
+                    "name": "gradientType",
+                    "type": "String",
+                    "info": "Type of gradient background (linear\/radial) Example: linear.",
+                    "required": false
+                },
+                {
+                    "name": "gradientColor1",
+                    "type": "String",
+                    "info": "First color for gradient background type Example: #1ee691.",
+                    "required": false
+                },
+                {
+                    "name": "gradientColor2",
+                    "type": "String",
+                    "info": "Second color for gradient background type Example: #1ddad6.",
+                    "required": false
+                },
+                {
+                    "name": "brandLogo",
+                    "type": "String",
+                    "info": "Second color for gradient background type Example: #1ddad6.",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "url": "https:\/\/api.ritekit.com\/v1\/images\/quote",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "client_id",
+                            "quote",
+                            "author",
+                            "fontSize",
+                            "quoteFont",
+                            "quoteFontColor",
+                            "authorFont",
+                            "authorFontColor",
+                            "enableHighlight",
+                            "highlightColor",
+                            "bgType",
+                            "backgroundColor",
+                            "gradientType",
+                            "gradientColor1",
+                            "gradientColor2",
+                            "brandLogo"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getLogoImage",
+            "description": "Returns a company logo based on website domain.",
+            "args": [
+                {
+                    "name": "clientId",
+                    "type": "credentials",
+                    "info": "Client id from your developer dashboard.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "client_id"
+                    }
+                },
+                {
+                    "name": "domain",
+                    "type": "String",
+                    "info": "URL of the company. Example: google.com.",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "url": "https:\/\/api.ritekit.com\/v1\/images\/logo",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "client_id",
+                            "domain"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getShortenLink",
+            "description": "Returns a shorten link with a given CTA.",
+            "args": [
+                {
+                    "name": "clientId",
+                    "type": "credentials",
+                    "info": "Client id from your developer dashboard.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "client_id"
+                    }
+                },
+                {
+                    "name": "cta",
+                    "type": "String",
+                    "info": "cta id Example: 1.",
+                    "required": true
+                },
+                {
+                    "name": "url",
+                    "type": "String",
+                    "info": "URL Example: https:\/\/ritekit.com.",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "url": "https:\/\/api.ritekit.com\/v1\/link\/short-link",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "client_id",
+                            "url",
+                            "cta"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getListOfCTAs",
+            "description": "Returns list of available CTA for current user. Requires each user to authenticate with RiteKit.",
+            "args": [
+                {
+                    "name": "clientId",
+                    "type": "credentials",
+                    "info": "Client id from your developer dashboard.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "client_id"
+                    }
+                }
+            ],
+            "vendorRequest": {
+                "url": "https:\/\/api.ritekit.com\/v1\/link\/cta",
+                "method": "get",
+                "requestParameters": [
+                    {
+                        "type": "query",
+                        "parameters": [
+                            "client_id"
+                        ]
+                    }
+                ]
+            },
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        }
+    ]
+}
