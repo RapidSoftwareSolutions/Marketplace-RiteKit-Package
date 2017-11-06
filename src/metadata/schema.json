@@ -332,7 +332,7 @@
                 }
             ],
             "vendorRequest": {
-                "url": "https:\/\/api.ritekit.com\/v1\/emoji\/auto-emojify\/{$data['hashtag']}",
+                "url": "https://api.ritekit.com/v1/influencers/hashtag/\/{$data['hashtag']}",
                 "method": "get",
                 "requestParameters": [
                     {

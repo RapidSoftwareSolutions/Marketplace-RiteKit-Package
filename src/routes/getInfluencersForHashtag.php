@@ -23,7 +23,7 @@ $app->post('/api/RiteKit/getInfluencersForHashtag', function ($request, $respons
     
 
     $client = $this->httpClient;
-    $query_str = "https://api.ritekit.com/v1/emoji/auto-emojify/{$data['hashtag']}";
+    $query_str = "https://api.ritekit.com/v1/influencers/hashtag/{$data['hashtag']}";
 
     
 
