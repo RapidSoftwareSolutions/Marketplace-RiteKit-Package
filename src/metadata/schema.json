@@ -313,7 +313,7 @@
         },
         {
             "name": "getInfluencersForHashtag",
-            "description": "Returns list of Twitter influencers for a given hashtag.",
+            "description": "Returns list of Twitter influencers for a given hashtag",
             "args": [
                 {
                     "name": "clientId",
